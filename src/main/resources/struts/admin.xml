@@ -1,0 +1,69 @@
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <constant name="struts.action.extension" value="sm"/>
+    
+	<package name="auth" extends="adminAuthInterceptor" namespace="/admin">
+		
+		
+	</package>
+	
+
+	<!-- 不用登录即可访问的界面 -->
+	<package name="nologin" extends="noLoginInterceptor" namespace="/">
+		 
+	
+	</package>
+
+
+   	<package name="adminAuthInterceptor" extends="someInterceptor">
+		<interceptors>
+			<!-- 认证拦截器-->
+			<interceptor name="adminAuthInterceptor"
+				class="cn.submsg.admin.common.interceptor.AdminAuthInterceptor" />
+			<interceptor-stack name="authStack">
+				<interceptor-ref name="adminAuthInterceptor" />
+				<interceptor-ref name="someStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="authStack" />
+		
+		<global-results>
+			<!-- 当没有登录的时候就会跳到首页要求其进行登录 -->
+			<result name="nologin" type="redirect">
+				/account.sm#/login
+			</result>
+		</global-results>	
+	</package>
+	
+	<package name="noLoginInterceptor" extends="someInterceptor">
+		<interceptors>
+			<!-- 不需要认证的拦截器-->
+			<interceptor name="noLoginInterceptor"
+				class="cn.submsg.admin.common.interceptor.NoLoginInterceptor" />
+			<interceptor-stack name="noLoginStack">
+				<interceptor-ref name="noLoginInterceptor" />
+				<interceptor-ref name="someStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="noLoginStack" />
+	</package>
+	
+	<package name="someInterceptor" extends="myInterceptor">
+		<interceptors>
+		    <!-- 并发访问限制 -->
+		    <interceptor name="webLocalSessiontUserVisitSpeedInterceptor"
+				class="cn.submsg.admin.common.interceptor.WebLocalSessiontUserVisitSpeedInterceptor" />
+			<!-- sql注入烂机器-->
+			<interceptor name="illegalCharacterInterceptor"
+				class="com.sr178.module.web.interceptor.IllegalCharacterInterceptor" />
+			<interceptor-stack name="someStack">
+			    <interceptor-ref name="webLocalSessiontUserVisitSpeedInterceptor" />
+				<interceptor-ref name="illegalCharacterInterceptor" />
+				<interceptor-ref name="myStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="someStack" />
+	</package>
+</struts>
