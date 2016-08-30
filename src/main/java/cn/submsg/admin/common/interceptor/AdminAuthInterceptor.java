@@ -30,7 +30,6 @@ public class AdminAuthInterceptor extends AbstractInterceptor{
 			}
 			aldAction.setUserSession(session);
 			aldAction.setUserName(session.getUserName());
-			aldAction.setErrorResult("success");
 			return invocation.invoke();
 		}else{
 			//不支持这种方式 直接中断

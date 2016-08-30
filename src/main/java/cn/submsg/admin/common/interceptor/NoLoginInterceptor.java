@@ -27,7 +27,6 @@ public class NoLoginInterceptor extends AbstractInterceptor{
 			if(session!=null){
 				aldAction.setUserSession(session);
 				aldAction.setUserName(session.getUserName());
-				aldAction.setErrorResult("success");
 			}
 			return invocation.invoke();
 		}else{

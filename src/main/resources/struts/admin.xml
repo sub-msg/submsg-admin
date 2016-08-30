@@ -5,14 +5,21 @@
     <constant name="struts.action.extension" value="sm"/>
     
 	<package name="auth" extends="adminAuthInterceptor" namespace="/admin">
-		
-		
+		<action name="index" class="cn.submsg.admin.user.action.AdminIndexAction" method="index">
+           <result name="success">/admin/index.jsp</result>
+		</action>
+		<action name="logout" class="cn.submsg.admin.user.action.AdminIndexAction" method="logout">
+           <result name="success" type="redirect">/index.jsp</result>
+		</action>
 	</package>
 	
 
 	<!-- 不用登录即可访问的界面 -->
 	<package name="nologin" extends="noLoginInterceptor" namespace="/">
-		 
+		<action name="login" class="cn.submsg.admin.user.action.AdminLoginAction" method="login">
+		    <result name="success">/index.jsp</result>
+           <result name="red" type="redirect">/admin/index.sm</result>
+		</action>
 	
 	</package>
 
@@ -32,7 +39,7 @@
 		<global-results>
 			<!-- 当没有登录的时候就会跳到首页要求其进行登录 -->
 			<result name="nologin" type="redirect">
-				/account.sm#/login
+				/index.jsp
 			</result>
 		</global-results>	
 	</package>
