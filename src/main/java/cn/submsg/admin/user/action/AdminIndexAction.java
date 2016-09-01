@@ -14,6 +14,7 @@ import cn.submsg.admin.service.AdminService;
 
 public class AdminIndexAction extends BaseActionSupport {
 
+	private int pageTag;
 	/**
 	 * 
 	 */
@@ -81,6 +82,16 @@ public class AdminIndexAction extends BaseActionSupport {
 	}
 	public void setTotalPayAmount(double totalPayAmount) {
 		this.totalPayAmount = totalPayAmount;
+	}
+
+
+	public int getPageTag() {
+		return pageTag;
+	}
+
+
+	public void setPageTag(int pageTag) {
+		this.pageTag = pageTag;
 	}
 	
 	

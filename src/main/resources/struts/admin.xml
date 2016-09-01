@@ -11,6 +11,12 @@
 		<action name="logout" class="cn.submsg.admin.user.action.AdminIndexAction" method="logout">
            <result name="success" type="redirect">/index.jsp</result>
 		</action>
+		<action name="signlist" class="cn.submsg.admin.user.action.SignManagerAction" method="signlist">
+           <result name="success">/admin/signlist.jsp</result>
+		</action>
+        <action name="updatesign" class="cn.submsg.admin.user.action.SignManagerAction" method="updateSign">
+            <result name="success" type="redirect">/admin/signlist.sm</result>
+		</action>		
 	</package>
 	
 
