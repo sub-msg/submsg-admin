@@ -5,7 +5,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bootstrap Admin</title>
+    <title>SUBMSG管理后台</title>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -95,7 +95,7 @@
           <td><fmt:formatDate value="${data.createdTime}" type="both"/></td>
           <td>
               <a href="#" id="sh" name="${data.id}"><i class="icon-pencil"></i></a>
-              <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
+             <!--  <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a> -->
           </td>
         </tr>
         </s:iterator>
@@ -131,6 +131,9 @@ $("#sh").live("click",
 	        var resionMassage=prompt("请输入该签名网关编码:","");
 	        if(resionMassage==""){
 	        	alert("请输入网关编码");return;
+	        }
+	        if(resionMassage==null){
+	        	return;
 	        }
 	        var id = $(this).attr("name");
 	        var d = '<form name="signHiddenForm" id="signHiddenForm" action="/admin/updatesign.sm" method="post" target="_self"><input type="text" name="id" value="' + id + '"/><input type="text" name="signNum" value="' + resionMassage + '"/><input type="submit" style="display:none" /></form>';

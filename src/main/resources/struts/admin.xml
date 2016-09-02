@@ -17,6 +17,13 @@
         <action name="updatesign" class="cn.submsg.admin.user.action.SignManagerAction" method="updateSign">
             <result name="success" type="redirect">/admin/signlist.sm</result>
 		</action>		
+		<action name="templist" class="cn.submsg.admin.user.action.TempManagerAction" method="templist">
+            <result name="success">/admin/templist.jsp</result>
+		</action>
+		<action name="updatetemp" class="cn.submsg.admin.user.action.TempManagerAction" method="updateStatus">
+		    <result name="success">/admin/templist.jsp</result>
+            <result name="redirect" type="redirect">/admin/templist.sm</result>
+		</action>
 	</package>
 	
 
