@@ -19,13 +19,14 @@ public class TempManagerAction extends BasePageActionSupport<AdminMsgTempBean> {
 		super.initPage(adminService.getTempPage(searchContent, tempStatus, 30, super.getToPage()));
 		return SUCCESS;
 	}
-	
+	private int status;
 	private String tempId;
 	private String newTempId;
 	private String unPassReason;
+	private int sendType;
 	public String updateStatus(){
 		AdminService adminService = ServiceCacheFactory.getService(AdminService.class);
-		adminService.updateTemp(tempId, tempStatus, newTempId, unPassReason);
+		adminService.updateTemp(tempId, status, newTempId, unPassReason,sendType);
 		return "redirect";
 	}
 	public int getTempStatus() {
@@ -58,4 +59,17 @@ public class TempManagerAction extends BasePageActionSupport<AdminMsgTempBean> {
 	public void setUnPassReason(String unPassReason) {
 		this.unPassReason = unPassReason;
 	}
+	public int getSendType() {
+		return sendType;
+	}
+	public void setSendType(int sendType) {
+		this.sendType = sendType;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	
 }

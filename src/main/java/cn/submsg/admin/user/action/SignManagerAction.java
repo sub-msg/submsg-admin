@@ -23,9 +23,10 @@ public class SignManagerAction extends BasePageActionSupport<AdminSign>{
 	
 	private int id;
 	private String signNum;
+	private int sendType;
 	public String updateSign(){
 		AdminService adminService = ServiceCacheFactory.getService(AdminService.class);
-		adminService.updateAdminSign(id, signNum);
+		adminService.updateAdminSign(id, signNum,sendType);
 		return SUCCESS;
 	}
 	public int getPageTag() {
@@ -51,5 +52,11 @@ public class SignManagerAction extends BasePageActionSupport<AdminSign>{
 	}
 	public void setSignNum(String signNum) {
 		this.signNum = signNum;
+	}
+	public int getSendType() {
+		return sendType;
+	}
+	public void setSendType(int sendType) {
+		this.sendType = sendType;
 	}
 }

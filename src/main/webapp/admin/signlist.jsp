@@ -81,6 +81,7 @@
           <th>签名内容</th>
           <th>签名状态</th>
           <th>网关编码</th>
+          <th>发送渠道</th>
           <th>创建时间</th>
           <th>操作</th>
         </tr>
@@ -92,9 +93,10 @@
           <td>${data.signContent}</td>
           <td><c:if test="${data.signStatus==0}"><font color='red'>未审核</font></c:if><c:if test="${data.signStatus==1}"><font color='green'>已审核</font></c:if></td>
           <td>${data.signNum}</td>
+          <td><c:if test="${data.sendType==0}">默认设置</c:if><c:if test="${data.sendType==1}">卓望</c:if><c:if test="${data.sendType==2}">SUBMAIL</c:if><c:if test="${data.sendType==4}">秒滴</c:if></td>
           <td><fmt:formatDate value="${data.createdTime}" type="both"/></td>
           <td>
-              <a href="#" id="sh" name="${data.id}"><i class="icon-pencil"></i></a>
+              <a href="#" id="sh" name="${data.id}" signNum="${data.signNum}" signSendType="${data.sendType}"><i class="icon-pencil"></i></a>
              <!--  <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a> -->
           </td>
         </tr>
@@ -108,14 +110,25 @@
 <div class="modal small hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Delete Confirmation</h3>
+        <h3 id="myModalLabel">签名修改</h3>
     </div>
     <div class="modal-body">
-        <p class="error-text"><i class="icon-warning-sign modal-icon"></i>Are you sure you want to delete the user?</p>
+        <form action="/admin/updatesign.sm" method="post" id="signEditForm">
+        <label>渠道编码:</label>
+          <input type="text" name="signNum" id="signNum" value=""/>
+        <label>发送渠道选择:</label>
+        <select name="sendType" id="sendType" class="input-xlarge">
+         <option value="0">默认</option>
+          <option value="1">卓望</option>
+          <option value="2">SUBMAIL</option>
+          <option value="4">秒滴</option>
+       </select>
+      <input type="hidden" name="id" id="id" value=""/>
+      </form>
     </div>
     <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-        <button class="btn btn-danger" data-dismiss="modal">Delete</button>
+        <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+        <button class="btn btn-danger" id="sureSubmit">确认</button>
     </div>
 </div>
                     
@@ -125,21 +138,18 @@
         </div>
     </div>
 <script type="text/javascript">
-
 $("#sh").live("click",
 	    function() {
-	        var resionMassage=prompt("请输入该签名网关编码:","");
-	        if(resionMassage==""){
-	        	alert("请输入网关编码");return;
-	        }
-	        if(resionMassage==null){
-	        	return;
-	        }
 	        var id = $(this).attr("name");
-	        var d = '<form name="signHiddenForm" id="signHiddenForm" action="/admin/updatesign.sm" method="post" target="_self"><input type="text" name="id" value="' + id + '"/><input type="text" name="signNum" value="' + resionMassage + '"/><input type="submit" style="display:none" /></form>';
-	        $("body").append(d);
-	        $("#signHiddenForm").submit();
-	        $("#signHiddenForm").remove();
+	         var signNum = $(this).attr("signNum");
+	         var signSendType = $(this).attr("signSendType");
+	         $("#id").val(id);
+	         $("#sendType").val(signSendType);
+	         $("#signNum").val(signNum);
+	         $('#myModal').modal('show');
+	         $("#sureSubmit").live("click",function(){
+	        	 $("#signEditForm").submit();
+	         })
 	    })
 </script>
     

@@ -91,6 +91,7 @@
           <th>模板内容</th>
           <th>模板状态</th>
           <th>签名</th>
+          <th>发送渠道</th>
           <th>创建时间</th>
           <th>操作</th>
         </tr>
@@ -103,9 +104,10 @@
           <td style="width:40%">${data.tempContent}</td>
           <td><c:if test="${data.tempStatus==0}">未提交审核</c:if><c:if test="${data.tempStatus==1}">已审核</c:if><c:if test="${data.tempStatus==-1}"><font color='red'>正在审核</font></c:if><c:if test="${data.tempStatus==-2}">审核不成功(${data.unpassReason})</c:if></td>
           <td><c:if test="${data.signStatus==0}"><font color='red'>${data.signContent}</font></c:if><c:if test="${data.signStatus==1}"><font color='green'>${data.signContent}</font></c:if></td>
+          <td><c:if test="${data.sendType==0}">默认设置</c:if><c:if test="${data.sendType==1}">卓望</c:if><c:if test="${data.sendType==2}">SUBMAIL</c:if><c:if test="${data.sendType==4}">秒滴</c:if></td>
           <td><fmt:formatDate value="${data.createdTime}" type="both"/></td>
           <td>
-              <a href="#" name="${data.tempId}" id="sh" title="【${data.signContent}】${data.tempContent}">修改</a>
+              <a href="#" name="${data.tempId}" id="sh" title="【${data.signContent}】${data.tempContent}" tempSendType="${data.sendType}" tempStatus="${data.tempStatus}">修改</a>
           </td>
         </tr>
         </s:iterator>
@@ -125,9 +127,16 @@
       <hr>
       <form action="/admin/updatetemp.sm" method="post" id="tempEditForm">
       <label>状态:</label>
-        <select name="tempStatus" id="tempStatus" class="input-xlarge">
-          <option value="1" <c:if test="${tempStatus==1}">selected</c:if>>审核成功</option>
-          <option value="-2" <c:if test="${tempStatus==-2}">selected</c:if>>审核失败</option>
+        <select name="status" id="status" class="input-xlarge">
+          <option value="1">审核成功</option>
+          <option value="-2">审核失败</option>
+       </select>
+       <label>发送渠道选择:</label>
+        <select name="sendType" id="sendType" class="input-xlarge">
+         <option value="0">默认</option>
+          <option value="1">卓望</option>
+          <option value="2">SUBMAIL</option>
+          <option value="4">秒滴</option>
        </select>
        <label>原因:</label><input type="text" value="" class="search form-inline" name="unPassReason" />
        <label>新模板ID:</label><input type="text" value="" class="search form-inline" name="newTempId" />
@@ -150,6 +159,11 @@
 $("#sh").live("click",
 	    function() {
 	         var tempId = $(this).attr("name");
+	         var status = $(this).attr("tempStatus");
+	         var tempSendType = $(this).attr("tempSendType");
+	         $("#sendType").val(tempSendType);
+	         $("#status").val(status);
+	        // alert("tempId=["+tempId+"]"+"tempStatus=["+status+"]"+"tempSendType=["+tempSendType+"]");
 	         $("#tempContent").html($(this).attr("title"));
 	         $('#myModal').modal('show');
 	         $("#sureSubmit").live("click",function(){
