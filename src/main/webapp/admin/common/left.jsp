@@ -22,6 +22,6 @@
 
         <a href="#error-menu" class="nav-header collapsed" data-toggle="collapse"><i class="icon-comment"></i>在线客服 <i class="icon-chevron-up"></i></a>
         <ul id="error-menu" class="nav nav-list collapse <%if(pageTag==3)out.print("in"); %>">
-            <li ><a href="#">最新工单</a></li>
+            <li ><a href="http://customer-service.submsg.cn:8787/index.php" target="_blank">登录在线客户系统</a></li>
         </ul>
     </div>
