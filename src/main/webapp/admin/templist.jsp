@@ -104,7 +104,7 @@
           <td style="width:40%">${data.tempContent}</td>
           <td><c:if test="${data.tempStatus==0}">未提交审核</c:if><c:if test="${data.tempStatus==1}">已审核</c:if><c:if test="${data.tempStatus==-1}"><font color='red'>正在审核</font></c:if><c:if test="${data.tempStatus==-2}">审核不成功(${data.unpassReason})</c:if></td>
           <td><c:if test="${data.signStatus==0}"><font color='red'>${data.signContent}</font></c:if><c:if test="${data.signStatus==1}"><font color='green'>${data.signContent}</font></c:if></td>
-          <td><c:if test="${data.sendType==0}">默认设置</c:if><c:if test="${data.sendType==1}">卓望</c:if><c:if test="${data.sendType==2}">SUBMAIL</c:if><c:if test="${data.sendType==4}">秒滴</c:if></td>
+          <td><c:if test="${data.sendType==0}">默认设置</c:if><c:if test="${data.sendType==1}">卓望</c:if><c:if test="${data.sendType==2}">SUBMAIL</c:if><c:if test="${data.sendType==3}">云片</c:if><c:if test="${data.sendType==4}">秒滴</c:if></td>
           <td><fmt:formatDate value="${data.createdTime}" type="both"/></td>
           <td>
               <a href="#" name="${data.tempId}" id="sh" title="【${data.signContent}】${data.tempContent}" tempSendType="${data.sendType}" tempStatus="${data.tempStatus}">修改</a>
@@ -136,6 +136,7 @@
          <option value="0">默认</option>
           <option value="1">卓望</option>
           <option value="2">SUBMAIL</option>
+          <option value="3">云片</option>
           <option value="4">秒滴</option>
        </select>
        <label>原因:</label><input type="text" value="" class="search form-inline" name="unPassReason" />

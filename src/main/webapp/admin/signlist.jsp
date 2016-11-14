@@ -93,7 +93,7 @@
           <td>${data.signContent}</td>
           <td><c:if test="${data.signStatus==0}"><font color='red'>未审核</font></c:if><c:if test="${data.signStatus==1}"><font color='green'>已审核</font></c:if></td>
           <td>${data.signNum}</td>
-          <td><c:if test="${data.sendType==0}">默认设置</c:if><c:if test="${data.sendType==1}">卓望</c:if><c:if test="${data.sendType==2}">SUBMAIL</c:if><c:if test="${data.sendType==4}">秒滴</c:if></td>
+          <td><c:if test="${data.sendType==0}">默认设置</c:if><c:if test="${data.sendType==1}">卓望</c:if><c:if test="${data.sendType==2}">SUBMAIL</c:if><c:if test="${data.sendType==3}">云片</c:if><c:if test="${data.sendType==4}">秒滴</c:if></td>
           <td><fmt:formatDate value="${data.createdTime}" type="both"/></td>
           <td>
               <a href="#" id="sh" name="${data.id}" signNum="${data.signNum}" signSendType="${data.sendType}"><i class="icon-pencil"></i></a>
@@ -121,6 +121,7 @@
          <option value="0">默认</option>
           <option value="1">卓望</option>
           <option value="2">SUBMAIL</option>
+          <option value="3">云片</option>
           <option value="4">秒滴</option>
        </select>
       <input type="hidden" name="id" id="id" value=""/>
