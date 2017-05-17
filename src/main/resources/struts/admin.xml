@@ -24,6 +24,12 @@
 		    <result name="success">/admin/templist.jsp</result>
             <result name="redirect" type="redirect">/admin/templist.sm</result>
 		</action>
+		<action name="orderlist" class="cn.submsg.admin.user.action.ChargeManagerAction">
+		    <result name="success">/admin/orderlist.jsp</result>
+            <result name="redirect" type="redirect">/admin/orderlist.sm</result>
+		</action>
+		<action name="updatesuccess" class="cn.submsg.admin.user.action.ChargeManagerJsonAction" method="updateOrderStatusToSuccess"></action>
+		<action name="getInvoiceById" class="cn.submsg.admin.user.action.ChargeManagerJsonAction" method="getInvoiceById"></action>
 	</package>
 	
 

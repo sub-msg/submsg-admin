@@ -19,6 +19,11 @@
             <li ><a href="/admin/templist.sm?pageTag=2">模板审核</a></li>
             <li ><a href="/admin/signlist.sm?pageTag=2">签名审核</a></li>
         </ul>
+        
+        <a href="#charger-menu" class="nav-header" data-toggle="collapse"><i class="icon-legal"></i>充值管理<i class="icon-chevron-up"></i></a>
+        <ul id="charger-menu" class="nav nav-list collapse <%if(pageTag==4)out.print("in"); %>">
+            <li ><a href="/admin/orderlist.sm?pageTag=4">商城订单</a></li>
+        </ul>
 
         <a href="#error-menu" class="nav-header collapsed" data-toggle="collapse"><i class="icon-comment"></i>在线客服 <i class="icon-chevron-up"></i></a>
         <ul id="error-menu" class="nav nav-list collapse <%if(pageTag==3)out.print("in"); %>">
